@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% if title %}
+        <title>Tutorry</title>
+        {% else %}
+        <title>Tutorry</title>
+        {% endif %}
+
+    </head>
+
+    <body>
+        <div>
+            <nav class="navbar navbar-expand-sm bg-dark">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="{% url 'home' %}"> TUTORRY</a>
+                        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+
+                    <div class="col-sm-4 col-md-4 navbar-center">
+                        <form class="navbar-form" role="search" action="{% url 'home' %}">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search " name="users">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit"><i
+                                            class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div id="navcol-1" class="collapse navbar-collapse">
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active" role="presentation">
+                                <a href="/logout">Logout</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="/accounts/password/change">Change Password</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="{% url 'home'%}">Post</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'home' %}">{{user.username}}</a>
+                            </li>
+                            {% else %}
+                            <li style="list-style-type:none; margin-left:100%;margin-top:10px;">
+                                <a href="/accounts/login">Login</a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </body>
+
+    </html>
